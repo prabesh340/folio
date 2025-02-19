@@ -355,25 +355,22 @@
             $(".heading_text").hide();
             $(".block-2 > h1").hide();
     
-            $(window).on("load", function() {
-    animation.from(loader, {
-        top: "80%",
-        left: "35%",
-        transform: "translate(-50%,-50%)",
-        duration: 0.5,
-        delay: 2.8, // Delay starts after the window load
-        onComplete: function () {
-            showAnimations();
-        }
-    });
-
-    animation.from(loader, {
-        scale: 1.4,
-        duration: 1,
-        delay: 1.7 // Delay also starts after window load
-    });
-});
-
+            animation.from(loader, {
+                top: "80%",
+                left: "35%",
+                transform: "translate(-50%,-50%)",
+                duration: 0.5,
+                delay: 2.8,
+                onComplete: function () {
+                    showAnimations();
+                }
+            });
+    
+            animation.from(loader, {
+                scale: 1.4,
+                duration: 1,
+                delay: 1.7
+            });
     
             function showAnimations() {
                 $(".container > .animation").each(function (index) {
