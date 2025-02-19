@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>temp</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family:nura;
+            src: url(font/Nura/Nura-Medium.ttf);
+        }
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            font-family: nura, serif; 
+            color: white;
+            height: 100%;
+            background-color: #171717;
+        }
+
+        html {
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FF0000;
+        }
+
+        .container {
+            display: grid;
+            gap: 1rem;
+            padding: 1rem;
+            height: calc(100vh - 2rem);
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+
+        .container > .animation:not(.block-3,.block-6) {
+            background-color: black;
+            border-radius: 10px;
+            transform: scale(0); 
+            opacity: 0; 
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .block-1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-origin: bottom;
+        }
+
+       
+        .block-2 {
+            transform-origin: right bottom;
+        }
+
+        .block-3 {
+    background-color: black;
+    border-radius: 10px;
+    z-index: 22222;
+    position: relative;
+    overflow: hidden;
+    background-image: url(img.png);
+    background-position:center; /* Moves the background 10px to the left */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+        .block-4 {
+            transform-origin: left top;
+        }
+
+        .block-5 {
+            transform-origin: top center;
+        }
+
+        .block-6 {
+            background-color: #5C5C5A;
+            transform-origin: top right;
+            border-radius: 10px;
+            transform: scale(0); 
+            opacity: 0; 
+            transition: transform 0.8s ease, opacity 0.8s ease
+        }
+
+        .block-7 {
+            transform-origin: top right;
+        }
+
+        @media (min-width: 1025px) {
+            .container {
+                grid-template-rows: repeat(10, minmax(0, 1fr));
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+            }
+
+            .block-1 {
+                grid-column: span 12;
+            }
+
+            .block-2 {
+                grid-column: span 5;
+                grid-row: span 5;
+            }
+
+            .block-3 {
+                grid-column: 6/9;
+                grid-row: 2/7;
+            }
+
+            .block-4 {
+                grid-column: span 4;
+                grid-row: span 8;
+            }
+
+            .block-5,
+            .block-6 {
+                grid-column: span 4;
+                grid-row: span 4;
+            }
+
+            .block-7 {
+                grid-column: span 4;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                height: 72rem;
+                grid-template-rows: repeat(12, minmax(0, 1fr));
+                grid-template-columns: repeat(8, minmax(0, 1fr));
+            }
+
+            .block-1 {
+                grid-column: span 8;
+                order: 0;
+            }
+
+            .block-2 {
+                grid-column: span 5;
+                grid-row: span 4;
+                order: 1;
+            }
+
+            .block-3 {
+                grid-column: span 3;
+                grid-row: span 4;
+                order: 2;
+            }
+
+            .block-4 {
+                grid-column: span 4;
+                grid-row: span 4;
+                order: 3;
+            }
+
+            .block-5 {
+                order: 5;
+            }
+
+            .block-6 {
+                order: 4;
+            }
+
+            .block-7 {
+                order: 6;
+            }
+
+            .block-6 {
+                grid-column: span 4;
+                grid-row: span 4;
+            }
+
+            .block-5 {
+                grid-row: span 10;
+                grid-column: span 8;
+            }
+
+            .block-7 {
+                grid-column: span 8;
+                grid-row: span 4;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-rows: repeat(6, minmax(0, 1fr));
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+
+            .block-1 {
+                grid-column: span 6;
+            }
+
+            .block-2,
+            .block-3,
+            .block-4,
+            .block-5,
+            .block-6,
+            .block-7 {
+                grid-column: span 6;
+                grid-row: span 3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-rows: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            .block-1 {
+                grid-column: span 4;
+            }
+
+            .block-2,
+            .block-3,
+            .block-4,
+            .block-5,
+            .block-6,
+            .block-7 {
+                grid-column: span 4;
+                grid-row: span 2;
+            }
+        }
+
+        .heading_text {
+            display: flex;
+    letter-spacing: 2px;
+
+        }
+
+        .heading_text > h1 {
+            color:#fdf9ea;
+            margin: 0;
+            animation: slideup .3s ease;
+        }
+
+        @keyframes slideup {
+            from {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+.block-2 {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 24px;
+}
+
+.block-2 h1 {
+    font-size: 2.4vw; 
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    text-transform: uppercase; 
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .block-2 h1 {
+        font-size: 4.5vw; 
+    }
+}
+
+@media (max-width: 768px) {
+    .block-2 h1 {
+        font-size: 9vw; 
+    }
+}
+
+  .block-2 span {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px); 
+            animation: slideupText 0.2s ease forwards;
+        }
+
+        @keyframes slideupText {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .block-2 span:nth-child(1) {
+            animation-delay: 0.15s;
+        }
+        .block-2 span:nth-child(2) {
+            animation-delay: .25s;
+        }
+        .block-2 span:nth-child(3) {
+            animation-delay: .45s;
+        }
+        .block-2 span:nth-child(4) {
+            animation-delay: .65s;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="block-1 animation">
+            <span class="heading_text">
+                <h1>PRABESH</h1>
+            </span>
+        </div>
+        <div class="block-2 animation">
+            <h1><span>Prabesh's Passionate</span><span>Journey in React & Web</span><span> Development and Digital </span><span>Creations</span></h1>
+        </div>
+        <div class="block-3">
+        </div>
+        <div class="block-4 animation"></div>
+        <div class="block-5 animation"></div>
+        <div class="block-6 animation"></div>
+        <div class="block-7 animation"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            var animation = gsap;
+            var loader = $(".block-3"); 
+    
+            $(".animation").hide();
+            $(".heading_text").hide();
+            $(".block-2 > h1").hide();
+    
+            $(window).on("load", function() {
+    animation.from(loader, {
+        top: "80%",
+        left: "35%",
+        transform: "translate(-50%,-50%)",
+        duration: 0.5,
+        delay: 2.8, // Delay starts after the window load
+        onComplete: function () {
+            showAnimations();
+        }
+    });
+
+    animation.from(loader, {
+        scale: 1.4,
+        duration: 1,
+        delay: 1.7 // Delay also starts after window load
+    });
+});
+
+    
+            function showAnimations() {
+                $(".container > .animation").each(function (index) {
+                    var delayTime = index *5; 
+    
+                    $(this).delay(delayTime).fadeIn(20).queue(function (next) {
+                        $(this).css({
+                            transform: "scale(1)",
+                            opacity: 1 
+                        });
+                        next();
+                    });
+                });
+    
+                $(".container > .block-1").last().on('transitionend', function () {
+                    $(".heading_text").fadeIn(); 
+                });
+    
+                $(".container > .block-2").last().on('transitionend', function () {
+                    $(".block-2 > h1").fadeIn(300); 
+                });
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
