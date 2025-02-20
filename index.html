@@ -54,7 +54,7 @@
             border-radius: 10px;
             transform: scale(0); 
             opacity: 0; 
-            transition: transform 0.8s ease, opacity 0.8s ease;
+            transition: transform 0.6s ease, opacity 0.6s ease;
         }
 
         .block-1 {
@@ -96,7 +96,7 @@
             border-radius: 10px;
             transform: scale(0); 
             opacity: 0; 
-            transition: transform 0.8s ease, opacity 0.8s ease
+            transition: transform 0.6s ease, opacity 0.6s ease
         }
 
         .block-7 {
@@ -377,7 +377,7 @@
                 $(".container > .animation").each(function (index) {
                     var delayTime = index *5; 
     
-                    $(this).delay(delayTime).fadeIn(20).queue(function (next) {
+                    $(this).delay(delayTime).fadeIn(10).queue(function (next) {
                         $(this).css({
                             transform: "scale(1)",
                             opacity: 1 
